@@ -1,6 +1,5 @@
 package com.currenda.bankapp;
 
-import org.json.JSONObject;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
