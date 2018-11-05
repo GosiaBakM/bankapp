@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&amp;subset=latin-ext" rel="stylesheet"/>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <title>Strona główna - BankApp</title>
+</head>
+<body>
+<section class="hero_area">
+    <div class="hero_content">
+        <div class="col-md-12">
+            <h1>KURSY WALUT </h1><br/><br/>
+            <h2>Oblicz średni kurs kupna waluty dla wybranego przedziału czasu i sprawdź jakie jest jej
+                odchylenie standardowe w odniesieniu do kursów sprzedaży.
+            </h2>
+            <br/><br/>
+        </div>
+        <h3>
+            <form th:action="@{/result}" method="get" enctype="multipart/form-data">
+                <div class="col-md-3">
+                    <label for="end">Waluta</label>
+                    <select th:name="code">
+                        <option id="content" type="content" th:name="code" th:each="aCont : ${content.getRates()}">
+                            <div th:text="${aCont.getCode()} "
+                                 th:href="${'/showPostByCategory/'+ aCont.getCode()}"
+                            >
+                            </div>
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="end">Data rozpoczęcia</label>
+                    <input type="date" id="start" name="startDate"
+                           th:value="${todayDate}"
+                           min="1998-01-01" th:max="${todayDate}"/>
+                </div>
+                <div class="col-md-4">
+                    <label for="end">Data zakończenia</label>
+                    <input type="date" id="end" name="endDate"
+                           th:value="${todayDate}"
+                           min="1998-01-01" th:max="${todayDate}"/>
+                </div>
+                <br/>
+                <h3>
+                    <div class="w3-bar">
+                        <input class="w3-button w3-teal" type="submit" value="WYŚLIJ"/>
+                    </div>
+                </h3>
+            </form>
+        </h3>
+    </div>
+</section>
+</body>
+</html>

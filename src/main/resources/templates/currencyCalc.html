@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&amp;subset=latin-ext" rel="stylesheet"/>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <title>Strona główna - BankApp</title>
+</head>
+<body>
+<section class="hero_area">
+    <div class="hero_content">
+        <table>
+            <tr>
+                <td class="col-md-2">
+                    <h4>
+                        <div th:text="${'Średni kurs kupna waluty ' + currencyCode}"></div>
+                    </h4>
+                </td>
+                <td class="col-md-1">
+                    <h5>
+                        <div th:text="${AvarageBidValue + ' zł'}"></div>
+                    </h5>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-2">
+                    <h4>
+                        <div th:text="${'Odchylenie standardowe kursów sprzedaży ' + currencyCode}"></div>
+                    </h4>
+                </td>
+                <td class="col-md-1">
+                    <h5>
+                        <div th:text="${standardDeviationValue + ' zł'}"></div>
+                    </h5>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+</body>
+</html>
