@@ -32,8 +32,6 @@ public class CurrencyService {
         RestTemplate rest = new RestTemplate();
         final String url = "http://api.nbp.pl/api/exchangerates/rates/c/" + code
                 + "/" + startDate + "/" + endDate + "/";
-        JSONObject myObject = new JSONObject("{ \"anyString\":\"code\"}");
-        myObject.getString("anyString");
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
         Currency currencyObject = rest.getForObject(url, Currency.class, headers);
