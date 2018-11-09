@@ -1,5 +1,6 @@
-package com.currenda.bankapp;
-
+package com.currenda.bankapp.service;
+import com.currenda.bankapp.model.Currency;
+import com.currenda.bankapp.model.Rates;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -7,7 +8,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
@@ -37,15 +37,15 @@ public class CurrencyService {
         return currencyObject;
     }
 
-    public List<Currency.Rates> readCurrencyData(String code, String startDate, String endDate) {
-        List<Currency.Rates> currencyData = getCurrencyObject(code, startDate, endDate).getRates();
+    public List<Rates> readCurrencyData(String code, String startDate, String endDate) {
+        List<Rates> currencyData = getCurrencyObject(code, startDate, endDate).getRates();
         return currencyData;
     }
 
     public BigDecimal getAvarageBidValue(String code, String startDate, String endDate) {
         BigDecimal resultBid = new BigDecimal("0");
         int counter = 0;
-        for (Currency.Rates i : readCurrencyData(code, startDate, endDate)) {
+        for (Rates i : readCurrencyData(code, startDate, endDate)) {
             BigDecimal bidValue = new BigDecimal(i.getBid());
             resultBid = resultBid.add(bidValue);
             counter++;
@@ -58,13 +58,13 @@ public class CurrencyService {
         BigDecimal resultAsk = new BigDecimal("0");
         BigDecimal numeratorOfStandardDeviation = new BigDecimal("0");
         int counter = 0;
-        for (Currency.Rates i : readCurrencyData(code, startDate, endDate)) {
+        for (Rates i : readCurrencyData(code, startDate, endDate)) {
             BigDecimal askValue = new BigDecimal(i.getAsk());
             resultAsk = resultAsk.add(askValue);
             counter++;
         }
         BigDecimal avarageAskValue = resultAsk.divide(new BigDecimal(counter),20, RoundingMode.HALF_UP);
-        for (Currency.Rates i : readCurrencyData(code, startDate, endDate)) {
+        for (Rates i : readCurrencyData(code, startDate, endDate)) {
             BigDecimal askValue = new BigDecimal(i.getAsk());
             numeratorOfStandardDeviation = numeratorOfStandardDeviation
                     .add((askValue.subtract(avarageAskValue)).pow(2));

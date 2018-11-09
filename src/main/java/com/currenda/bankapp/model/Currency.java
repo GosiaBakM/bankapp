@@ -1,4 +1,4 @@
-package com.currenda.bankapp;
+package com.currenda.bankapp.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,19 +19,4 @@ public class Currency {
 
     @JsonProperty("code")
     private String code;
-
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    static class Rates {
-
-        @JsonProperty("code")
-        private String code;
-
-        @JsonProperty("bid")
-        private String bid;
-
-        @JsonProperty("ask")
-        private String ask;
-    }
 }
